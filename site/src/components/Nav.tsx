@@ -10,9 +10,13 @@ import { LanguageSwitcher } from "./LanguageSwitcher";
 export function Logo({ homeHref, label }: { homeHref: string; label: string }) {
   return (
     <a href={homeHref} className="flex items-center gap-2.5 rounded-full py-1" aria-label={label}>
-      <span
+      <img
+        src={withBase("/bizgrow-mark.png")}
+        alt=""
+        width={22}
+        height={22}
         aria-hidden
-        className="block size-[22px] shrink-0 rounded-full bg-[linear-gradient(135deg,#2a8178,#256f9e)] shadow-[inset_0_1px_2px_rgb(255_255_255/0.45)]"
+        className="size-[22px] shrink-0"
       />
       <span lang="en" className="font-serif text-[1.3rem] font-semibold tracking-[-0.01em] text-ink">
         {site.name}
