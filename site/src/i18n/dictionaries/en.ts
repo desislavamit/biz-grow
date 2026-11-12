@@ -24,7 +24,6 @@ export const en: Dictionary = {
     links: [
       { label: "Services", href: "#services" },
       { label: "Process", href: "#process" },
-      { label: "About", href: "#proof" },
     ],
     cta: "Book a call",
   },
@@ -90,14 +89,6 @@ export const en: Dictionary = {
         body: "We tune, monitor, and improve so systems stay accurate as your business changes.",
       },
     ],
-  },
-  proof: {
-    title: "Built for operators, not slide decks",
-    quote:
-      "“BizGrow mapped our intake chaos in one afternoon. Two weeks later the team had hours back — and nobody had to learn a new platform.”",
-    name: "Maya R.",
-    role: "Owner, 12-person creative studio",
-    trust: "No black-box platforms. Tools you own. Training your team keeps.",
   },
   cta: {
     title: "Find your first 10 hours back.",

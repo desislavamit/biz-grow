@@ -159,32 +159,6 @@ export function Process({ t }: Props) {
   );
 }
 
-export function Proof({ t }: Props) {
-  const { proof } = t;
-  return (
-    <section id="proof" aria-labelledby="proof-title" className="pb-16 md:pb-24">
-      <div className={container}>
-        <figure className="reveal card p-7 md:p-12">
-          <h2
-            id="proof-title"
-            className="heading font-serif text-[clamp(1.6rem,2.8vw,2.1rem)] leading-tight font-medium tracking-[-0.01em] text-ink"
-          >
-            {proof.title}
-          </h2>
-          <blockquote className="mt-5 max-w-[62ch] text-[1.08rem] leading-relaxed text-ink italic md:text-[1.15rem]">
-            <p>{proof.quote}</p>
-          </blockquote>
-          <figcaption className="mt-6">
-            <p className="font-semibold text-ink">{proof.name}</p>
-            <p className="text-[0.95rem] text-ink-muted">{proof.role}</p>
-          </figcaption>
-          <p className="mt-6 border-t border-ink/10 pt-5 font-medium text-ink">{proof.trust}</p>
-        </figure>
-      </div>
-    </section>
-  );
-}
-
 export function CtaBand({ t }: Props) {
   const { cta } = t;
   return (

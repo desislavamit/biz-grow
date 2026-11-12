@@ -47,13 +47,6 @@ export interface Dictionary {
     lead: string;
     steps: { n: string; label: string; title: string; body: string }[];
   };
-  proof: {
-    title: string;
-    quote: string;
-    name: string;
-    role: string;
-    trust: string;
-  };
   cta: {
     title: string;
     body: string;

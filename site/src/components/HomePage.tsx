@@ -1,7 +1,7 @@
 import { getDictionary, type Locale } from "@/i18n";
 import { Nav } from "./Nav";
 import { RevealObserver } from "./RevealObserver";
-import { CtaBand, Footer, Hero, Process, Proof, Services } from "./Sections";
+import { CtaBand, Footer, Hero, Process, Services } from "./Sections";
 
 export function HomePage({ locale }: { locale: Locale }) {
   const t = getDictionary(locale);
@@ -19,7 +19,6 @@ export function HomePage({ locale }: { locale: Locale }) {
         <Hero t={t} />
         <Services t={t} />
         <Process t={t} />
-        <Proof t={t} />
         <CtaBand t={t} />
       </main>
       <Footer t={t} locale={locale} />
