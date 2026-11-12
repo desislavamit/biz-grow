@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef, type CSSProperties } from "react";
+import { withBase } from "@/i18n/config";
 import type { Dictionary } from "@/i18n/types";
 
 function prefersReducedMotion() {
@@ -86,7 +87,7 @@ export function HeroVisual({ hero }: { hero: Dictionary["hero"] }) {
           <div ref={artRef} className="absolute inset-0 scale-[1.03] transition-transform duration-700 ease-out-soft">
             {/* eslint-disable-next-line @next/next/no-img-element -- static export, pre-sized WebP */}
             <img
-              src={hero.imageSrc}
+              src={withBase(hero.imageSrc)}
               alt={hero.imageAlt}
               width={1436}
               height={1074}

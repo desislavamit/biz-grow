@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { localeHref, site, type Locale } from "@/i18n/config";
+import { localeHref, site, withBase, type Locale } from "@/i18n/config";
 import type { Dictionary } from "@/i18n/types";
 import { BookingLink } from "./BookingLink";
 import { MenuIcon } from "./Icons";
@@ -48,7 +48,7 @@ export function Nav({ locale, t }: { locale: Locale; t: Pick<Dictionary, "nav" |
         }`}
       >
         <div className="flex h-[60px] items-center justify-between gap-3 pr-2 pl-5">
-          <Logo homeHref={`${localeHref[locale]}#top`} label={t.a11y.home} />
+          <Logo homeHref={withBase(`${localeHref[locale]}#top`)} label={t.a11y.home} />
 
           <ul className="hidden items-center gap-6 text-[0.95rem] font-medium md:flex">
             {t.nav.links.map((link) => (

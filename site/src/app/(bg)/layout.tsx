@@ -1,7 +1,7 @@
 import type { Viewport } from "next";
 import type { ReactNode } from "react";
 import { Literata, Manrope } from "next/font/google";
-import { buildMetadata, localeHref, localeStorageKey } from "@/i18n";
+import { buildMetadata, localeHref, localeStorageKey, withBase } from "@/i18n";
 import "../globals.css";
 
 // Fraunces has no Cyrillic subset; Literata is the closest Cyrillic-capable serif (optical sizes + true italic).
@@ -25,7 +25,7 @@ export const viewport: Viewport = { themeColor: "#d0ebfc" };
 
 // Honors an explicit earlier choice of English. Runs before first paint, so there is no flash;
 // browser language is deliberately ignored so Bulgarian stays the default.
-const rememberedLocaleScript = `try{if(localStorage.getItem(${JSON.stringify(localeStorageKey)})==="en")location.replace(${JSON.stringify(localeHref.en)}+location.hash)}catch(e){}`;
+const rememberedLocaleScript = `try{if(localStorage.getItem(${JSON.stringify(localeStorageKey)})==="en")location.replace(${JSON.stringify(withBase(localeHref.en))}+location.hash)}catch(e){}`;
 
 export default function BgRootLayout({ children }: { children: ReactNode }) {
   return (

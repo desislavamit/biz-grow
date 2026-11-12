@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { Literata, Manrope } from "next/font/google";
-import { localeHref } from "@/i18n/config";
+import { localeHref, withBase } from "@/i18n/config";
 import "./globals.css";
 
 const display = Literata({ variable: "--font-display", subsets: ["latin", "cyrillic"], display: "swap" });
@@ -24,10 +24,10 @@ export default function GlobalNotFound() {
               Page not found
             </p>
             <div className="mt-8 flex flex-col justify-center gap-3 sm:flex-row">
-              <a href={localeHref.bg} className="btn btn-primary">
+              <a href={withBase(localeHref.bg)} className="btn btn-primary">
                 Към началото
               </a>
-              <a href={localeHref.en} lang="en" hrefLang="en" className="btn btn-secondary">
+              <a href={withBase(localeHref.en)} lang="en" hrefLang="en" className="btn btn-secondary">
                 English home
               </a>
             </div>

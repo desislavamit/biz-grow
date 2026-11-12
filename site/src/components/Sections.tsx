@@ -1,5 +1,5 @@
 import type { CSSProperties } from "react";
-import { localeHref, site, type Locale } from "@/i18n/config";
+import { localeHref, site, withBase, type Locale } from "@/i18n/config";
 import type { Dictionary } from "@/i18n/types";
 import { BookingLink } from "./BookingLink";
 import { HeroVisual } from "./HeroVisual";
@@ -218,7 +218,7 @@ export function Footer({ t, locale }: Props & { locale: Locale }) {
       <div className={container}>
         <div className="flex flex-col gap-6 border-t border-ink/10 pt-8 md:flex-row md:items-center md:justify-between">
           <div>
-            <Logo homeHref={`${localeHref[locale]}#top`} label={t.a11y.home} />
+            <Logo homeHref={withBase(`${localeHref[locale]}#top`)} label={t.a11y.home} />
             <p className="mt-2 text-[0.95rem] text-ink-muted">{t.footer.descriptor}</p>
           </div>
           <div className="flex flex-col gap-4 md:items-end">
