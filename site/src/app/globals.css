@@ -326,24 +326,6 @@
   50% { transform: translate3d(0, 6px, 0); }
 }
 
-.pulse-dot {
-  position: relative;
-}
-
-.pulse-dot::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  border-radius: inherit;
-  background: inherit;
-  animation: pulse 2.4s ease-out infinite;
-}
-
-@keyframes pulse {
-  0% { transform: scale(1); opacity: 0.6; }
-  80%, 100% { transform: scale(2.8); opacity: 0; }
-}
-
 .band-glow {
   position: absolute;
   width: 34rem;

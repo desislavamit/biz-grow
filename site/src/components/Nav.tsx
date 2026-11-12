@@ -43,14 +43,14 @@ export function Nav({ locale, t }: { locale: Locale; t: Pick<Dictionary, "nav" |
     <header className="fixed inset-x-0 top-3 z-50 px-3 sm:top-5 sm:px-6">
       <nav
         aria-label={t.a11y.primaryNav}
-        className={`glass mx-auto max-w-[920px] rounded-[30px] transition-[box-shadow,background-color] duration-300 ${
+        className={`glass mx-auto max-w-[1120px] rounded-[30px] transition-[box-shadow,background-color] duration-300 ${
           scrolled || open ? "bg-white/85 shadow-nav" : "shadow-[0_6px_24px_-14px_rgb(23_41_51/0.18)]"
         }`}
       >
         <div className="flex h-[60px] items-center justify-between gap-3 pr-2 pl-5">
           <Logo homeHref={withBase(`${localeHref[locale]}#top`)} label={t.a11y.home} />
 
-          <ul className="hidden items-center gap-6 text-[0.95rem] font-medium md:flex">
+          <ul className="hidden items-center gap-4 text-[0.9rem] font-medium md:flex lg:gap-6 lg:text-[0.95rem]">
             {t.nav.links.map((link) => (
               <li key={link.href}>
                 <a className="nav-link" href={link.href}>

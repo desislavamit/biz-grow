@@ -24,7 +24,6 @@ export interface Dictionary {
     cta: string;
   };
   hero: {
-    chip: string;
     line1: string;
     line2: string;
     body: string;
@@ -52,10 +51,24 @@ export interface Dictionary {
     body: string;
     button: string;
   };
+  contact: {
+    title: string;
+    book: string;
+    emailBefore: string;
+    fields: {
+      name: string;
+      email: string;
+      description: string;
+    };
+    submit: string;
+    /** Start of the mailto subject, followed by the name the visitor typed. */
+    mailSubject: string;
+  };
   footer: {
     descriptor: string;
     services: string;
     process: string;
+    contact: string;
     privacy: string;
     rights: string;
   };

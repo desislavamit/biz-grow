@@ -21,34 +21,26 @@ export function Hero({ t }: Props) {
       <div className={container}>
         <div className="grid items-center gap-12 lg:grid-cols-[1fr_1.05fr] lg:gap-14">
           <div className="min-w-0">
-            <p
-              className="enter glass inline-flex items-center gap-2 rounded-full px-3.5 py-1.5 text-[0.85rem] font-medium text-ink-soft shadow-[0_6px_18px_-12px_rgb(23_41_51/0.35)]"
-              style={enterDelay(0)}
-            >
-              <span aria-hidden className="pulse-dot size-2 shrink-0 rounded-full bg-blue-dot" />
-              {hero.chip}
-            </p>
-
             <h1
               id="hero-title"
-              className="heading hero-title mt-6 font-serif text-[clamp(2.6rem,6vw,4.5rem)] leading-[1.04] font-medium tracking-[-0.02em] text-ink"
+              className="heading hero-title font-serif text-[clamp(2.6rem,6vw,4.5rem)] leading-[1.04] font-medium tracking-[-0.02em] text-ink"
             >
-              <span className="enter block" style={enterDelay(80)}>
+              <span className="enter block" style={enterDelay(0)}>
                 {hero.line1}
               </span>
-              <span className="enter block" style={enterDelay(160)}>
+              <span className="enter block" style={enterDelay(80)}>
                 <span className="headline-accent">{hero.line2}</span>
               </span>
             </h1>
 
             <p
               className="enter mt-6 max-w-[38ch] text-[1.0625rem] leading-relaxed text-ink-soft sm:text-[1.125rem]"
-              style={enterDelay(240)}
+              style={enterDelay(160)}
             >
               {hero.body}
             </p>
 
-            <div className="enter mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap" style={enterDelay(320)}>
+            <div className="enter mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap" style={enterDelay(240)}>
               <BookingLink newTabLabel={t.a11y.newTab} className="btn btn-primary w-full sm:w-auto">
                 {hero.primary}
                 <ArrowRight className="btn-arrow" />
@@ -210,6 +202,11 @@ export function Footer({ t, locale }: Props & { locale: Locale }) {
               <li>
                 <a className="nav-link" href="#process">
                   {t.footer.process}
+                </a>
+              </li>
+              <li>
+                <a className="nav-link" href="#contact">
+                  {t.footer.contact}
                 </a>
               </li>
               <li>

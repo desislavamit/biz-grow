@@ -24,11 +24,11 @@ export const en: Dictionary = {
     links: [
       { label: "Services", href: "#services" },
       { label: "Process", href: "#process" },
+      { label: "Contact us", href: "#contact" },
     ],
     cta: "Book a call",
   },
   hero: {
-    chip: "Now booking spring projects.",
     line1: "Less busywork.",
     line2: "More business.",
     body: "BizGrow designs AI and automation systems that quietly handle the repetitive work — so small teams can focus on customers and growth.",
@@ -95,10 +95,23 @@ export const en: Dictionary = {
     body: "A free 30-minute call where we spot the three biggest automation wins in your business.",
     button: "Book your free audit",
   },
+  contact: {
+    title: "Contact us",
+    book: "Book a video call now",
+    emailBefore: "Send us an email at",
+    fields: {
+      name: "Names",
+      email: "Email",
+      description: "Description",
+    },
+    submit: "Submit",
+    mailSubject: "BizGrow message from",
+  },
   footer: {
     descriptor: "Practical AI ops for small businesses.",
     services: "Services",
     process: "Process",
+    contact: "Contact us",
     privacy: "Privacy",
     rights: "All rights reserved.",
   },

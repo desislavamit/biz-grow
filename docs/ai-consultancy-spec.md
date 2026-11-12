@@ -9,7 +9,7 @@
 |---|---|
 | `media/hero-mockup.png` | Nav, hero split, overlay card, metric row |
 | `media/services-mockup.png` | Services cards + dark CTA band |
-| `media/process-mockup.png` | Process steps + testimonial panel |
+| `media/process-mockup.png` | Process steps. The mockup also shows a testimonial panel; that panel is **not** on the site. |
 | `media/mobile-mockup.png` | Mobile homepage (390px class) |
 | `media/references/flowlight-*.png` | Original Flowlight inspiration (third-party, reference only) |
 
@@ -55,25 +55,25 @@ Both language pages have identical sections:
 | 1 | `#hero` | Value prop, dual CTAs, visual card + overlay, 3 metric cards |
 | 2 | `#services` | 3 service cards |
 | 3 | `#process` | 3 process steps |
-| 4 | `#proof` | Testimonial panel ("About" link target) |
-| 5 | `#audit` | Dark teal CTA band |
+| 4 | `#audit` | Dark teal CTA band |
+| 5 | `#contact` | Contact: video-call button, email line, mailto form |
 | 6 | — | Footer |
 
 ## 4. Languages (i18n)
 
 - **Locales:** Bulgarian `bg` (default, at `/`) and English `en` (at `/en/`). The brand name **BizGrow** stays in Latin script in both, marked `lang="en"` inside Bulgarian text.
-- **Copy source:** all text lives in typed dictionaries, `site/src/i18n/dictionaries/bg.ts` and `en.ts`. This includes nav, hero, metrics, services, process, testimonial, CTA, footer, image alt text, aria labels (menu, skip link, language group, "(opens in a new tab)") and page title, description and Open Graph text. The `Dictionary` type in `site/src/i18n/types.ts` makes a missing translation a build error.
+- **Copy source:** all text lives in typed dictionaries, `site/src/i18n/dictionaries/bg.ts` and `en.ts`. This includes nav, hero, metrics, services, process, contact, CTA, footer, image alt text, aria labels (menu, skip link, language group, "(opens in a new tab)") and page title, description and Open Graph text. The `Dictionary` type in `site/src/i18n/types.ts` makes a missing translation a build error.
 - **Bulgarian copy:** written natively in a business tone, not translated literally. Highlights:
   - H1: „По-малко рутина. / Повече бизнес.“
   - Nav CTA: „Запазете час“
   - Hero CTA: „Безплатен одит на процесите“
-  - Sections: „Какво поемаме вместо вас“, „От хаос към ред“, „За хора на действието, не за презентации“
+  - Sections: „Какво поемаме вместо вас“, „От хаос към ред“, „Свържете се с нас“
   - CTA band: „Върнете си първите 10 часа.“ / „Запазете безплатен одит“
   - Metrics: „12 ч“, „18 дни“, „4,9★“ (Bulgarian decimal comma)
   - Quotes use „…“ in Bulgarian and “…” in English.
 - **Switcher:** a segmented BG | EN pill in the desktop nav, in the mobile menu sheet (with a "Език"/"Language" label) and in the footer. The links carry `hreflang`, `lang` and `aria-current`, inside a `role="group"` labelled "Език"/"Language". Switching keeps the current `#section`.
 - **Persistence:** a click saves the choice to `localStorage["bizgrow-locale"]`. An inline script in the BG page's `<head>` sends a visitor who chose English from `/` to `/en/` before first paint, so there is no flash. Browser language is ignored, so Bulgarian is always the first-visit default.
-- **SEO:** each locale has its own root layout with the correct `<html lang>`, title, description, `og:locale` (`bg_BG` / `en_US`) and `og:locale:alternate`. Both pages emit `<link rel="alternate" hreflang>` for `bg`, `en` and `x-default` (→ `/`), plus a canonical URL. Absolute URLs come from `site.url` in `site/src/i18n/config.ts` (placeholder `https://bizgrow.example`; set the real domain before launch).
+- **SEO:** each locale has its own root layout with the correct `<html lang>`, title, description, `og:locale` (`bg_BG` / `en_US`) and `og:locale:alternate`. Both pages emit `<link rel="alternate" hreflang>` for `bg`, `en` and `x-default` (→ `/`), plus a canonical URL. Absolute URLs come from `site.url` in `site/src/i18n/config.ts`. The GitHub Pages build (`GITHUB_PAGES=1`) sets it to `https://desislavamit.github.io/biz-grow`, so the live pages are `https://desislavamit.github.io/biz-grow/` (Bulgarian) and `https://desislavamit.github.io/biz-grow/en/` (English). Other builds keep the placeholder `https://bizgrow.example`.
 - **Banner image (per locale):** each language has its own hero banner, set in the dictionary as `hero.imageSrc` (1436×1074 WebP). Both use identical artwork, logo, wordmark, icons and dividers.
   - EN: `site/public/bizgrow-banner.webp`.
   - BG: `site/public/bizgrow-banner-bg.webp`, master `media/bizgrow-banner-bg.png` (1448×1086).
@@ -88,18 +88,19 @@ Every booking CTA opens the Google Calendar appointment page **in a new tab**:
 `https://calendar.app.google/kn22dWg1BWVwSPHp6`
 
 - Markup: `target="_blank" rel="noopener noreferrer"`, plus visually hidden text "(opens in a new tab)".
-- Applies to: **Book a call** (nav), **Get a free flow audit →** (hero), **Book your free audit** (CTA band), and any future book-now button.
+- Applies to: **Book a call** (nav), **Get a free flow audit →** (hero), **Book your free audit** (CTA band), **Book a video call now** (contact), and any future book-now button.
 - Same URL for every language. Single source of truth: `site.bookingUrl` in `site/src/i18n/config.ts`, rendered via the `BookingLink` component. The screen-reader suffix is localized: "(opens in a new tab)" / "(отваря се в нов раздел)".
 - In-page links (Explore services, nav section links, footer links) stay as same-tab anchors.
 
 ### Nav
 - Logo: **BizGrow**
-- Links: Services (`#services`) · Process (`#process`) · About (`#proof`)
+- Links: Services (`#services`) · Process (`#process`) · Contact us (`#contact`)
 - CTA: **Book a call** → booking link (new tab)
 - Mobile: logo + "Book a call" pill + menu button opening a sheet with the 3 links.
+- Bulgarian nav label for contact: **Свържете се с нас** (same destination, `#contact`).
 
 ### Hero
-- Chip: **Now booking spring projects.**
+There is no status chip. The headline is the first thing in the column.
 - H1 line 1: **Less busywork.**
 - H1 line 2 (teal, italic): **More business.**
 - Body: BizGrow designs AI and automation systems that quietly handle the repetitive work — so small teams can focus on customers and growth.
@@ -129,20 +130,23 @@ Title: **From friction to flow** · Lead: A calm sequence — diagnose first, bu
 | 02 | Build | Ship inside your stack | We implement automations and assistants in the tools you already own — with training, not a black box. |
 | 03 | Steady | Keep it reliable | We tune, monitor, and improve so systems stay accurate as your business changes. |
 
-### Proof `#proof`
-- Title: **Built for operators, not slide decks**
-- Quote: "BizGrow mapped our intake chaos in one afternoon. Two weeks later the team had hours back — and nobody had to learn a new platform."
-- Attribution: **Maya R.** · Owner, 12-person creative studio
-- Trust line: No black-box platforms. Tools you own. Training your team keeps.
-
 ### CTA band `#audit`
 - Title: **Find your first 10 hours back.**
 - Body: A free 30-minute call where we spot the three biggest automation wins in your business.
 - Button: **Book your free audit** → booking link (new tab).
 
+### Contact `#contact`
+Same section on both language pages (English at `/en/#contact`). No separate route and no backend.
+
+- Title: **Contact us** / **Свържете се с нас**
+- Button: **Book a video call now** / **Запазете видеоразговор сега** → the booking link, new tab, same `BookingLink` as the other book-now buttons.
+- Line: **Send us an email at** hello@bizgrow.example / **Изпратете ни имейл на** hello@bizgrow.example. The address is a `mailto:` link. The address is `site.email` (`hello@bizgrow.example`).
+- Form fields (labels): **Names** / **Име** (the person's name), **Email** / **Имейл**, **Description** / **Описание**. Submit: **Submit** / **Изпратете**.
+- **How submit works:** GitHub Pages is static and has no mail server. Submit does not post to a backend or a third-party form service. It opens the visitor's mail app with **To** set to `hello@bizgrow.example`. The subject is the localized phrase plus the name ("BizGrow message from …" / "Съобщение до BizGrow от …"). The body lists Names, Email and Description with the values the visitor typed.
+
 ### Footer
 - BizGrow wordmark · "Practical AI ops for small businesses."
-- Links: hello@bizgrow.example · Services · Process · Privacy (`#` placeholder)
+- Links: hello@bizgrow.example · Services · Process · Contact us (`#contact`) · Privacy (`#` placeholder)
 - © {current year} BizGrow. All rights reserved.
 
 ### Metadata
@@ -155,9 +159,8 @@ Title: **From friction to flow** · Lead: A calm sequence — diagnose first, bu
 
 | Component | Notes |
 |---|---|
-| `Nav` | Fixed floating white-glass capsule, max-w 860px, h 60px, top 20px; logo, links with underline hover, CTA pill; mobile menu sheet. Gains stronger shadow after scroll. |
-| `StatusChip` | White/70 pill, 8px blue dot with soft pulse, 14px text. |
-| `Hero` | 2-col split (`1fr 1.05fr`) ≥1024px; stacked below. |
+| `Nav` | Fixed floating white-glass capsule, max-w 1120px, h 60px, top 20px; logo, links with underline hover (Services, Process, Contact us), CTA pill; mobile menu sheet. Gains stronger shadow after scroll. |
+| `Hero` | 2-col split (`1fr 1.05fr`) ≥1024px; stacked below. No status chip. |
 | `BookingLink` | Anchor to `site.bookingUrl` with `target="_blank" rel="noopener noreferrer"` + sr-only "(opens in a new tab)"; used by every book-now CTA. |
 | `Button` | `primary` (blue→teal gradient), `secondary` (white, hairline border), `glow` (teal→mint on dark band). Pill, min-h 48px. |
 | `HeroVisual` | Rounded 32px frame (aspect 1436/1074 ≈ 4/3) showing Desislava's BizGrow banner, chosen per locale via `hero.imageSrc`: `bizgrow-banner.webp` (EN, source `media/references/bizgrow-banner.png` in the Project store) or `bizgrow-banner-bg.webp` (BG). It shows the logo, tagline, glass ribbons and four labels. Slow float + gentle pointer parallax (±5px). |
@@ -166,7 +169,7 @@ Title: **From friction to flow** · Lead: A calm sequence — diagnose first, bu
 | `SectionHeading` | Serif H2 + optional lead. |
 | `ServiceCard` | White card, 44px mint icon circle, serif title, gray body; hover lift. Mobile: icon left of text. |
 | `ProcessStep` | Card with big teal serif number, label, subtitle, body. |
-| `Testimonial` | Wide white panel: title, italic quote, attribution, trust line. |
+| `Contact` | White card after the CTA band: booking button, mailto line, and the Names / Email / Description form. Submit builds a `mailto:` URL. |
 | `CtaBand` | Dark gradient panel radius 36px, drifting glow blob, glow button. |
 | `Footer` | Minimal row. |
 | `Reveal` | IntersectionObserver wrapper adding `.is-visible` once, with stagger delay prop. |
@@ -186,7 +189,7 @@ Title: **From friction to flow** · Lead: A calm sequence — diagnose first, bu
 | `teal` | `#2A8178` | Accents, numerals |
 | `teal-deep` | `#1F6A66` | Hover / emphasis |
 | `blue` | `#256F9E` | Primary button start, nav CTA |
-| `blue-dot` | `#2D7AB0` | Chip dot, "automated" |
+| `blue-dot` | `#2D7AB0` | "automated" on the overlay |
 | `headline-a` → `headline-b` | `#3C8476` → `#2F5F8A` | "More business." text gradient |
 | `icon-mint` | `#C9EEE4` | Service icon circle |
 | `band-1/2/3` | `#111619` / `#122222` / `#0C413B` | CTA band |
@@ -260,10 +263,9 @@ Images: hero banner served as WebP with fixed aspect ratio (no layout shift). Th
 |---|---|
 | Gradient drift | Two large blurred radial blobs (sky + mint) behind content translate/scale on 28s and 36s alternate loops; page wash background-position shifts on 40s loop. |
 | Scroll reveal | `opacity 0→1`, `translateY(24px)→0`, `filter blur(4px)→0`, 700ms `cubic-bezier(.22,1,.36,1)`, stagger 80ms; once per element (IntersectionObserver, threshold .15). |
-| Hero entrance | Chip, H1 lines, body, CTAs fade-rise in sequence on load (80ms stagger). |
+| Hero entrance | H1 lines, body, CTAs fade-rise in sequence on load (80ms stagger). |
 | Hover depth | Cards: `translateY(-4px)` + `card-hover` shadow, 250ms; buttons: `translateY(-2px)`, gradient sheen sweep; nav links: underline scaleX 0→1 from left. |
 | Hero visual | Gentle float (±6px, 9s) and pointer parallax (±8px) on the image; overlay counts 0→248 over 1.6s when visible. |
-| Chip dot | Soft pulse ring (2.4s). |
 | Nav | Shadow/opacity deepen after 16px scroll. |
 | CTA band | Slow drifting mint glow blob (20s). |
 
@@ -281,13 +283,13 @@ Never: bounce, autoplay carousels, confetti, aggressive glow.
 | Motion | CSS keyframes/transitions + small client hooks (IntersectionObserver); no animation library |
 | Lint | ESLint 9 + `eslint-config-next` 16.4.x |
 | Runtime | Node.js ≥ 20.9 (tested on Node 26) |
-| Hosting | Any static host (SuperHosting.bg `public_html`, Netlify, Vercel); optional Node app via `BUILD_MODE=node` (standalone server) |
+| Hosting | GitHub Pages at `https://desislavamit.github.io/biz-grow/`. The workflow in `.github/workflows/pages.yml` builds with `GITHUB_PAGES=1` (basePath and assetPrefix `/biz-grow`) and deploys `site/out`. `npm run dev` stays at `/`. Also fine on any other static host; optional Node app via `BUILD_MODE=node`. |
 
 TypeScript 7 and ESLint 10 exist on npm, but the Next.js 16.4 template and `typescript-eslint` still target TypeScript 5.x / ESLint 9, so those are used for a clean, supported toolchain.
 
 ## 12. Acceptance checklist
 
-- [ ] Matches mockups: wash, capsule nav, serif H1 with teal line 2, dual CTAs, glass-ribbon card + overlay, 3 metrics, 3 services, process + testimonial, dark CTA band, footer, mobile layout.
+- [ ] Matches mockups where they still apply: wash, capsule nav, serif H1 with teal line 2, dual CTAs, glass-ribbon card + overlay, 3 metrics, 3 services, process, dark CTA band, footer, mobile layout. No spring-projects chip and no testimonial panel. Contact section on both languages, with the mailto form.
 - [ ] No old brand name anywhere in code or copy.
 - [ ] `npm run lint`, `npx tsc --noEmit`, `npm run build` all clean; `out/` works from a plain static server.
 - [ ] Reduced motion honored; keyboard navigation and focus visible; Lighthouse a11y ≥ 95.

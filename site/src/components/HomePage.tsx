@@ -1,6 +1,7 @@
 import { getDictionary, type Locale } from "@/i18n";
 import { Nav } from "./Nav";
 import { RevealObserver } from "./RevealObserver";
+import { Contact } from "./Contact";
 import { CtaBand, Footer, Hero, Process, Services } from "./Sections";
 
 export function HomePage({ locale }: { locale: Locale }) {
@@ -20,6 +21,7 @@ export function HomePage({ locale }: { locale: Locale }) {
         <Services t={t} />
         <Process t={t} />
         <CtaBand t={t} />
+        <Contact t={t} />
       </main>
       <Footer t={t} locale={locale} />
       <RevealObserver />
