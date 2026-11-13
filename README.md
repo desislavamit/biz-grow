@@ -126,6 +126,20 @@ npm run build
 
 Output: `site/out/`, a folder of plain HTML, CSS, JS and images. Everything inside it gets uploaded to the host. No server-side code is needed.
 
+This default build uses site-root URLs (`/favicon.ico`, `/bizgrow-mark.png`, `/en/`). Do not set `GITHUB_PAGES=1` for it. That flag is only for https://desislavamit.github.io/biz-grow/ and prefixes every asset with `/biz-grow`.
+
+## Publish the built files
+
+From the project root:
+
+```bash
+./scripts/push-out.sh
+```
+
+Or, from `site/`: `npm run push:out`.
+
+The command builds `site/` without `GITHUB_PAGES`, then pushes **only the contents** of `site/out/` to the `main` branch of https://github.com/desislavamit/bizgrow-pub (`index.html` at the repo root). It does not commit `site/out/` into this source repository, and it does not change `biz-grow`. The GitHub token is read from `githubtoken.rtf` in the project root (override the path with `BIZGROW_TOKEN_FILE`). It stays in an environment variable for that run and is never written into the script or a remote URL.
+
 ## Deploy to SuperHosting.bg
 
 ### Option A (recommended): static upload to `public_html`
