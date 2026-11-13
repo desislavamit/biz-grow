@@ -7,7 +7,7 @@
   },
   "scripts": {
     "dev": "next dev",
-    "build": "next build",
+    "build": "next build && node ./scripts/relativize-export.mjs",
     "push:out": "bash ../scripts/push-out.sh",
     "preview": "serve out -l 3000",
     "build:node": "BUILD_MODE=node next build && cp -R public .next/standalone/ && cp -R .next/static .next/standalone/.next/",

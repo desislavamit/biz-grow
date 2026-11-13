@@ -146,6 +146,14 @@ if grep -R -q --include='*.html' --include='*.css' --include='*.js' --fixed-stri
   echo "Refusing to publish: this build still uses the /biz-grow prefix." >&2
   exit 1
 fi
+if [[ ! -f "$ROOT/site/out/.nojekyll" ]]; then
+  echo "Refusing to publish: site/out is missing .nojekyll, so GitHub Pages would hide _next." >&2
+  exit 1
+fi
+if grep -R -q --include='*.html' --fixed-string '"/_next/' "$ROOT/site/out"; then
+  echo "Refusing to publish: HTML still points at root-absolute /_next assets." >&2
+  exit 1
+fi
 
 cd "$WORKDIR"
 git init -b main >/dev/null

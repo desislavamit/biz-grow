@@ -1,7 +1,7 @@
 "use client";
 
 import type { MouseEvent } from "react";
-import { localeHref, localeLabel, localeStorageKey, locales, withBase, type Locale } from "@/i18n/config";
+import { localeDepth, localeHref, localeLabel, localeStorageKey, locales, withBase, type Locale } from "@/i18n/config";
 
 export function LanguageSwitcher({
   locale,
@@ -12,13 +12,14 @@ export function LanguageSwitcher({
   label: string;
   className?: string;
 }) {
+  const depth = localeDepth(locale);
   const remember = (target: Locale) => (e: MouseEvent<HTMLAnchorElement>) => {
     try {
       localStorage.setItem(localeStorageKey, target);
     } catch {
       // Storage can be unavailable (private mode); switching still works via the link.
     }
-    if (window.location.hash) e.currentTarget.href = withBase(localeHref[target]) + window.location.hash;
+    if (window.location.hash) e.currentTarget.href = withBase(localeHref[target], depth) + window.location.hash;
   };
 
   return (
@@ -32,7 +33,7 @@ export function LanguageSwitcher({
         return (
           <a
             key={l}
-            href={withBase(localeHref[l])}
+            href={withBase(localeHref[l], depth)}
             hrefLang={l}
             lang={l}
             aria-label={localeLabel[l].name}

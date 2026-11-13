@@ -11,13 +11,31 @@ export const localeHref: Record<Locale, string> = {
 
 /**
  * Empty unless the Pages build set it (`GITHUB_PAGES=1` in next.config.ts).
- * Locale paths stay `/` and `/en/`; this prefixes links and public files so they resolve under the project site.
+ * Locale paths stay `/` and `/en/` in source; `withBase` prefixes them for that build only.
  */
 export const basePath = process.env.NEXT_PUBLIC_BASE_PATH ?? "";
 
-export function withBase(path: string): string {
-  if (!basePath || !path.startsWith("/")) return path;
-  return `${basePath}${path}`;
+/**
+ * How many directories the locale's page sits below the exported site root.
+ * Bulgarian is `index.html`; English is `en/index.html`.
+ */
+export function localeDepth(locale: Locale): number {
+  return locale === defaultLocale ? 0 : 1;
+}
+
+/**
+ * Prefix a root path for the current build.
+ * The Pages build (`basePath` `/biz-grow`) keeps host-absolute URLs.
+ * Every other build uses paths relative to the page, so the same `out` folder
+ * works as the web root and when a host serves that folder from a subdirectory.
+ */
+export function withBase(path: string, depth = 0): string {
+  if (!path.startsWith("/")) return path;
+  if (basePath) return `${basePath}${path}`;
+  const rest = path.slice(1);
+  const prefix = depth === 0 ? "./" : "../".repeat(depth);
+  if (rest === "" || rest.startsWith("#")) return `${prefix}${rest}`;
+  return `${"../".repeat(depth)}${rest}`;
 }
 
 export const localeLabel: Record<Locale, { short: string; name: string }> = {

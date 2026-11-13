@@ -1,5 +1,5 @@
 import type { CSSProperties } from "react";
-import { localeHref, site, withBase, type Locale } from "@/i18n/config";
+import { localeDepth, localeHref, site, withBase, type Locale } from "@/i18n/config";
 import type { Dictionary } from "@/i18n/types";
 import { BookingLink } from "./BookingLink";
 import { HeroVisual } from "./HeroVisual";
@@ -14,7 +14,8 @@ const container = "mx-auto w-full max-w-[1120px] px-5 sm:px-6";
 
 type Props = { t: Dictionary };
 
-export function Hero({ t }: Props) {
+export function Hero({ t, locale }: Props & { locale: Locale }) {
+  const depth = localeDepth(locale);
   const { hero } = t;
   return (
     <section id="hero" aria-labelledby="hero-title" className="pt-28 pb-16 sm:pt-36 md:pb-24">
@@ -51,7 +52,7 @@ export function Hero({ t }: Props) {
             </div>
           </div>
 
-          <HeroVisual hero={hero} />
+          <HeroVisual hero={hero} depth={depth} />
         </div>
 
         <ul
@@ -179,12 +180,13 @@ export function CtaBand({ t }: Props) {
 
 export function Footer({ t, locale }: Props & { locale: Locale }) {
   const year = new Date().getFullYear();
+  const depth = localeDepth(locale);
   return (
     <footer className="pb-10">
       <div className={container}>
         <div className="flex flex-col gap-6 border-t border-ink/10 pt-8 md:flex-row md:items-center md:justify-between">
           <div>
-            <Logo homeHref={withBase(`${localeHref[locale]}#top`)} label={t.a11y.home} />
+            <Logo homeHref={withBase(`${localeHref[locale]}#top`, depth)} label={t.a11y.home} depth={depth} />
             <p className="mt-2 text-[0.95rem] text-ink-muted">{t.footer.descriptor}</p>
           </div>
           <div className="flex flex-col gap-4 md:items-end">

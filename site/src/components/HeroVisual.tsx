@@ -8,7 +8,7 @@ function prefersReducedMotion() {
   return typeof window !== "undefined" && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 }
 
-export function HeroVisual({ hero }: { hero: Dictionary["hero"] }) {
+export function HeroVisual({ hero, depth = 0 }: { hero: Dictionary["hero"]; depth?: number }) {
   const frameRef = useRef<HTMLDivElement>(null);
   const artRef = useRef<HTMLDivElement>(null);
   const countRef = useRef<HTMLSpanElement>(null);
@@ -87,7 +87,7 @@ export function HeroVisual({ hero }: { hero: Dictionary["hero"] }) {
           <div ref={artRef} className="absolute inset-0 scale-[1.03] transition-transform duration-700 ease-out-soft">
             {/* eslint-disable-next-line @next/next/no-img-element -- static export, pre-sized WebP */}
             <img
-              src={withBase(hero.imageSrc)}
+              src={withBase(hero.imageSrc, depth)}
               alt={hero.imageAlt}
               width={1436}
               height={1074}

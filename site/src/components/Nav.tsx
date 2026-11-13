@@ -1,17 +1,25 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { localeHref, site, withBase, type Locale } from "@/i18n/config";
+import { localeDepth, localeHref, site, withBase, type Locale } from "@/i18n/config";
 import type { Dictionary } from "@/i18n/types";
 import { BookingLink } from "./BookingLink";
 import { MenuIcon } from "./Icons";
 import { LanguageSwitcher } from "./LanguageSwitcher";
 
-export function Logo({ homeHref, label }: { homeHref: string; label: string }) {
+export function Logo({
+  homeHref,
+  label,
+  depth = 0,
+}: {
+  homeHref: string;
+  label: string;
+  depth?: number;
+}) {
   return (
     <a href={homeHref} className="flex items-center gap-2.5 rounded-full py-1" aria-label={label}>
       <img
-        src={withBase("/bizgrow-mark.png")}
+        src={withBase("/bizgrow-mark.png", depth)}
         alt=""
         width={22}
         height={22}
@@ -43,6 +51,8 @@ export function Nav({ locale, t }: { locale: Locale; t: Pick<Dictionary, "nav" |
     return () => window.removeEventListener("keydown", onKey);
   }, [open]);
 
+  const depth = localeDepth(locale);
+
   return (
     <header className="fixed inset-x-0 top-3 z-50 px-3 sm:top-5 sm:px-6">
       <nav
@@ -52,7 +62,7 @@ export function Nav({ locale, t }: { locale: Locale; t: Pick<Dictionary, "nav" |
         }`}
       >
         <div className="flex h-[60px] items-center justify-between gap-3 pr-2 pl-5">
-          <Logo homeHref={withBase(`${localeHref[locale]}#top`)} label={t.a11y.home} />
+          <Logo homeHref={withBase(`${localeHref[locale]}#top`, depth)} label={t.a11y.home} depth={depth} />
 
           <ul className="hidden items-center gap-4 text-[0.9rem] font-medium md:flex lg:gap-6 lg:text-[0.95rem]">
             {t.nav.links.map((link) => (

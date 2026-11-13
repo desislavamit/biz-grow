@@ -17,7 +17,7 @@ export function HomePage({ locale }: { locale: Locale }) {
       <div aria-hidden className="page-wash" />
       <Nav locale={locale} t={{ nav: t.nav, a11y: t.a11y }} />
       <main id="main">
-        <Hero t={t} />
+        <Hero t={t} locale={locale} />
         <Services t={t} />
         <Process t={t} />
         <CtaBand t={t} />

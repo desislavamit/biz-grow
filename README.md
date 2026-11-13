@@ -126,7 +126,7 @@ npm run build
 
 Output: `site/out/`, a folder of plain HTML, CSS, JS and images. Everything inside it gets uploaded to the host. No server-side code is needed.
 
-This default build uses site-root URLs (`/favicon.ico`, `/bizgrow-mark.png`, `/en/`). Do not set `GITHUB_PAGES=1` for it. That flag is only for https://desislavamit.github.io/biz-grow/ and prefixes every asset with `/biz-grow`.
+This default build uses paths relative to each page (`_next/…`, `bizgrow-mark.png`, `en/`), so the folder works as the document root and also when a host serves it from a subdirectory. `site/public/.nojekyll` is copied into the export so GitHub Pages does not hide `_next`. Do not set `GITHUB_PAGES=1` for this build. That flag is only for https://desislavamit.github.io/biz-grow/ and prefixes every asset with `/biz-grow`.
 
 ## Publish the built files
 
